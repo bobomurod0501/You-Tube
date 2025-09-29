@@ -1,0 +1,30 @@
+button{
+   padding: 5px 15px;
+   border: none;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 10px;
+   background: inherit;
+   color: #902923;
+   font-weight: bold;
+   font-size: 17px;
+   cursor: pointer;
+   border-radius: 5px;
+   transition: all 0.5s;
+}
+button:hover{
+   background-color: #902923;
+   color: aliceblue;
+   cursor: pointer;
+   transform: scale(1.1);
+}
+.selected{
+   background-color: #902923;
+   color: aliceblue;
+   cursor: pointer;
+}
+
+::-webkit-scrollbar{
+   display: none;
+}

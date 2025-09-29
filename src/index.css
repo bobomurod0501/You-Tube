@@ -1,0 +1,48 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.react-player {
+  width: 100% !important;
+  height: 77vh !important;
+}
+.descriptionText {
+  line-height: 1.2em;
+  /* height: 3.6em; */
+  width: 100%;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+.videTitle {
+  line-height: 1.2em;
+  /* height: 3.6em; */
+  width: 100%;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+.videoDescription {
+  line-height: 1.2em;
+  /* height: 3.6em; */
+  width: 100%;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+.channelImage {
+  height: 180px;
+  width: 180px;
+  margin-bottom: 2;
+  border: "1px solid #e3e3e3";
+  border-radius: 50%;
+}
