@@ -22,7 +22,7 @@ export const MainPage = () => {
       <Stack>
          <Category setSelectedCategory={setSelectedCategory} selectedCategory={selectedCategory} />
          <Box sx={{ p: 2, height: "90vh" }}>
-            <Container maxWidth={"90%"}>
+            <Container maxWidth={false} sx={{ maxWidth: "100%" }}>
                <Typography variant="h4" fontWeight={"bold"} mb={3}>
                   {selectedCategory} <span style={{ color: "#bc3908" }}>videos</span>
                </Typography>

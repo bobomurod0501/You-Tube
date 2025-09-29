@@ -1,8 +1,28 @@
 import { CheckCircle } from "@mui/icons-material";
 import { Box, CardContent, CardMedia, Typography } from "@mui/material";
-
-export const ChanellCard = ({ video }) => {
-  console.log("vdeo", video);
+interface VideoType {
+  id?: {
+    videoId?: string;
+    channelId?: string;
+  };
+  title?: string;
+  statistics?:{
+    subscriberCount:string
+  }
+  snippet?: {
+    channelId: string;
+    publishedAt: string;
+    title: string;
+    description: string;
+    channelTitle: string;
+    thumbnails: {
+      high: {
+        url: string;
+      };
+    };
+  };
+}
+export const ChanellCard = ({ video }:{video: VideoType}) => {
 
   return (
     // <Link to={`/channel/${video?.id?.channelId}`}>

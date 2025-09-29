@@ -8,22 +8,41 @@ import Linkify from 'react-linkify';
 import { getSuggestedVideo } from "../../services/getSuggestedVideo";
 import { Videos } from "../videos-page/Videos";
 
+interface VideoDetailtype {
+   snippet?:{
+      description:string,
+      tags:string[],
+      title:string,
+      channelId:string,
+      channelTitle:string,
+      thumbnails:{
+         default:{
+            url:string
+         }
+      }
+   },
+   statistics?:{
+      viewCount:string,
+      likeCount:string,
+      commentCount:string,
+   }
+}
 export const VideoDetail = () => {
-   const [videoDetails, setVideoDetails] = useState([]);
+   const [videoDetails, setVideoDetails] = useState<VideoDetailtype>({});
    const [suggestedVideoData, setSuggestedVideoData] = useState([])
    const [expanded, setExpanded] = useState(false);
    const { videoId } = useParams();
    useEffect(() => {
       const fetchData = async () => {
-         const data = await getVideoDetailsApi(videoId);
-         const seggestedVideoData = await getSuggestedVideo(videoId)
+         const data = await getVideoDetailsApi(videoId as string);
+         const seggestedVideoData = await getSuggestedVideo(videoId as string)
          setVideoDetails(data[0]);
          setSuggestedVideoData(seggestedVideoData)
       };
       fetchData();
    }, [videoId]);
 
-   const desc = videoDetails?.snippet?.description.length > 0
+   const desc = Boolean(videoDetails?.snippet?.description.length)
 
    // const {
    //    snippet: { title, channelId, channelTitle, description, tags, thumbnails },
@@ -79,15 +98,15 @@ export const VideoDetail = () => {
                <Stack direction={"row"} alignItems={"center"} gap={"20px"} py={1} >
                   <Stack sx={{ opacity: 0.7 }} gap={"3px"} direction={"row"} alignItems={"center"}>
                      <Visibility />
-                     {parseInt(videoDetails?.statistics?.viewCount).toLocaleString()} views
+                     {parseInt(videoDetails?.statistics?.viewCount as string).toLocaleString()} views
                   </Stack>
                   <Stack sx={{ opacity: 0.7 }} gap={"3px"} direction={"row"} alignItems={"center"}>
                      <FavoriteOutlined />
-                     {parseInt(videoDetails?.statistics?.likeCount).toLocaleString()} likes
+                     {parseInt(videoDetails?.statistics?.likeCount as string).toLocaleString()} likes
                   </Stack>
-                  <Stack sx={{ opacity: 0.7 }} gap={"3px"} direction={"wor"} alignItems={"center"}>
+                  <Stack sx={{ opacity: 0.7 }} gap={"3px"} direction={"row"} alignItems={"center"}>
                      <MarkChatRead />
-                     {parseInt(videoDetails?.statistics?.commentCount).toLocaleString()} comments
+                     {parseInt(videoDetails?.statistics?.commentCount as string).toLocaleString()} comments
                   </Stack>
                </Stack>
                <Link to={`/channel/${videoDetails?.snippet?.channelId}`}>
