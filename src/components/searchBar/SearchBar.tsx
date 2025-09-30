@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router';
 const SearchBar = () => {
    const [searchVal, setSearchVal] = useState<string>("")
    const navigate = useNavigate()
+
    const submitFunc = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault()
       if(searchVal.trim()){

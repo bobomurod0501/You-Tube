@@ -3,6 +3,7 @@ import { useParams } from "react-router"
 import { getVideosApi } from "../../services/getVideosApi"
 import { Box, Container, Typography } from "@mui/material"
 import { Videos } from "../videos-page/Videos"
+import { NotFound } from "../../components/NotFoundPAge/NotFound"
 interface VideoType {
    id: {
       videoId?: string;
@@ -29,10 +30,16 @@ export const SearchedVideos = () => {
    useEffect(() => {
       const fetchData = async() => {
          const data = await getVideosApi(id as string)
-         setSearchedVideo(data)
+         console.log("data", data)
+         if(data){
+            setSearchedVideo(data)
+         }
       }
       fetchData()
    }, [id])
+   if(searchedVideo?.length === 0){
+      return <NotFound/>
+   }
   return (
     <Box p={2} sx={{height:"90vh"}}>
         <Container maxWidth={false} sx={{ maxWidth: "100%" }}>
