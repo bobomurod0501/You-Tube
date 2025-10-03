@@ -6,9 +6,10 @@ import DarkModeIcon from '@mui/icons-material/DarkMode';
 import { useThemeContext } from "../../contexts/ThemeContext";
 
 const Navbar = () => {
+  console.log(document.title)
   const {mode, setMode} = useThemeContext()
   return (
-    <Stack direction={"row"} alignItems={"center"} justifyContent={"space-between"} padding={"20px"} sx={{ position: "sticky", top: 0, zIndex: 99, background: mode == "dark" ? "#001219" : "#f5f5f273"}}>
+    <Stack direction={"row"} alignItems={"center"} justifyContent={"space-between"} padding={"20px"} sx={{ position: "sticky", width:"100%", top: 0, zIndex: 99, background: mode == "dark" ? "#001219" : "#fefcfd"}}>
       <Link to={"/"}>
         {/* <img src={Logo} alt="Logo" height={"30px"} width={"40px"} /> */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>

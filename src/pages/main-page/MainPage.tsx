@@ -17,7 +17,6 @@ export const MainPage = () => {
          fetchData()
       }, [selectedCategory])
 
-
    return (
       <Stack>
          <Category setSelectedCategory={setSelectedCategory} selectedCategory={selectedCategory} />
