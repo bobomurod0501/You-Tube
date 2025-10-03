@@ -3,6 +3,7 @@ import { Avatar, Card, CardContent, CardMedia, Stack, Typography } from "@mui/ma
 import moment from "moment"
 import { Link } from "react-router"
 import noImage from "../../../images/no-image.jpg"
+// import { useThemeContext } from "../../../contexts/ThemeContext"
 interface VideoType {
    id?: {
       videoId?: string;
@@ -23,8 +24,9 @@ interface VideoType {
    };
 }
 export const VideCard = ({ video }: { video: VideoType }) => {
+   // const {mode} = useThemeContext()
    return (
-      <Card sx={{ width: "320px", boxShadow: "none", borderRadius:0}}>
+      <Card  sx={{ width: "320px", boxShadow: "none", borderRadius:0}}>
          <Link to={`/video/${video?.id?.videoId}`}>
             <CardMedia
                component="img"
@@ -39,10 +41,10 @@ export const VideCard = ({ video }: { video: VideoType }) => {
                <Typography sx={{ opacity: "0.4", listStyle:"none", fontSize:"12px" }}>
                   {moment(video?.snippet?.publishedAt).fromNow()}
                </Typography>
-               <Typography variant="subtitle1" fontWeight={"bold"} className="videTitle">
+               <Typography gutterBottom variant="subtitle1" fontWeight={"bold"} className="videTitle" sx={{color:"text.secondary"}}>
                   {video?.snippet?.title}
                </Typography>
-               <Typography variant="subtitle2" sx={{ opacity: "0.6" }} className="videoDescription">
+               <Typography  variant="subtitle2" sx={{ opacity: "0.6", color:"text.secondary"  }} className="videoDescription">
                   {video?.snippet?.description.length ? video?.snippet?.description : "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime reiciendis cum quaerat itaque dolor accusamus sunt laudantium inventore possimus eligendi veritatis a repellat asperiores suscipit eum voluptatem provident, fugit saepe aut veniam nulla deserunt ex in commodi. Maiores ab dolores modi nam et, blanditiis, sequi, neque inventore nesciunt voluptatem eaque?"}
                </Typography>
             </Link>

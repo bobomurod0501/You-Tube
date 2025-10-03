@@ -1,6 +1,7 @@
 import { Stack } from '@mui/material';
 import "./category.css"
 import { categories } from './categoryData';
+import { useThemeContext } from '../../contexts/ThemeContext';
 
 interface Props {
   selectedCategory:string,
@@ -8,6 +9,7 @@ interface Props {
 }
 
 const Category = ({ setSelectedCategory, selectedCategory }: Props) => {
+  const {mode} = useThemeContext()
   const handeSelectFunc = (name:string) => {
     setSelectedCategory(name)
   }
@@ -16,7 +18,7 @@ const Category = ({ setSelectedCategory, selectedCategory }: Props) => {
       {
         categories?.map((item) => {
           return (
-            <button className={`${selectedCategory == item.name ? "selected" : ""}`} onClick={() => handeSelectFunc(item.name)} key={item.id}><span>{item.icon}</span>{item.name}</button>
+            <button className={`${mode} ${selectedCategory == item.name ? "selected" : ""}`} onClick={() => handeSelectFunc(item.name)} key={item.id}><span>{item.icon}</span>{item.name}</button>
           )
         })
       }
