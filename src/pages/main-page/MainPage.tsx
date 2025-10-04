@@ -20,13 +20,13 @@ export const MainPage = () => {
    return (
       <Stack>
          <Category setSelectedCategory={setSelectedCategory} selectedCategory={selectedCategory} />
-         <Box sx={{ p: 2, height: "90vh" }}>
-            <Container maxWidth={false} sx={{ maxWidth: "100%" }}>
+         <Box sx={{  height: "90vh" }}>
+            {/* <Container  maxWidth={"sm"}> */}
                <Typography variant="h4" fontWeight={"bold"} mb={3}>
                   {selectedCategory} <span style={{ color: "#bc3908" }}>videos</span>
                </Typography>
                <Videos videos={videos} />
-            </Container>
+            {/* </Container> */}
          </Box>
       </Stack>
    )

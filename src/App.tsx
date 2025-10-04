@@ -1,5 +1,4 @@
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router"
-import MainLayout from "./layouts/MainLayout"
 import { MainPage } from "./pages/main-page/MainPage"
 import { SearchedVideos } from "./pages/search/SearchedVideos"
 import { VideoDetail } from "./pages/video-detail/VideoDetail"
@@ -7,11 +6,12 @@ import { ChannelPage } from "./pages/channel/ChannelPage"
 import { createTheme, ThemeProvider, CssBaseline } from "@mui/material"
 import { useMemo } from "react"
 import { useThemeContext } from "./contexts/ThemeContext"
+import { Root } from "./pages/Root"
 
 const router = createBrowserRouter([
   {
     path:"/",
-    element:<MainLayout/>,
+    element:<Root/>,
     children:[
       {
         index:true,
@@ -55,6 +55,9 @@ const App = () => {
   const theme = useMemo(() => createTheme({
     palette:{
       mode,
+      primary: {
+        main: '#ff5252',
+      },
     }
   }), [mode])
   return (

@@ -51,7 +51,7 @@ export const VideoDetail = () => {
 
    return (
       <Box height={"90vh"} mb={10}>
-         <Box display={"flex"} gap={3} p={5} sx={{ flexDirection: { sx: "column", md: "row" } }}>
+         <Box display={"flex"} gap={2} p={1} pt={3} sx={{ flexDirection: { sx: "column", md: "row" } }}>
             <Box width={"75%"} >
                <ReactPlayer src={`https://www.youtube.com/watch?v=${videoId}`} className="react-player" controls />
                <Stack flexDirection={"row"} flexWrap={"wrap"} gap={1} mt={1}>

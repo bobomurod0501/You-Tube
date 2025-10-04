@@ -24,7 +24,7 @@ const SearchBar = () => {
    return (
       <Paper
          component="form"
-         sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400 }}
+         sx={{  display: 'flex', alignItems: 'center', width: 400 }}
          onSubmit={submitFunc}
       >
          <InputBase
@@ -33,7 +33,7 @@ const SearchBar = () => {
             inputProps={{ 'aria-label': 'search google maps' }}
             onChange={(e) => setSearchVal(e.target.value)}
          />
-         <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
+         <IconButton type="submit" sx={{ p: '5px' }} aria-label="search">
             <SearchIcon />
          </IconButton>
       </Paper>

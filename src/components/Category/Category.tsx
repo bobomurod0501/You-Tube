@@ -14,7 +14,7 @@ const Category = ({ setSelectedCategory, selectedCategory }: Props) => {
     setSelectedCategory(name)
   }
   return (
-    <Stack direction={"row"} spacing={1} p={1} sx={{overflowX:"auto", }}>
+    <Stack direction={"row"} spacing={1} p={1} sx={{overflowX:"auto" }}>
       {
         categories?.map((item) => {
           return (

@@ -26,7 +26,7 @@ export const Videos = ({videos}: {videos: VideoType[]}) => {
     return <Loader/>
   }
   return (
-    <Stack direction={"row"} flexWrap={"wrap"} gap={2}>
+    <Stack direction={"row"} flexWrap={"wrap"} gap={1}>
       {
         videos?.map((video: VideoType) => {
           return (
