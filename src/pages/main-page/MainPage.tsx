@@ -1,4 +1,4 @@
-import { Box, Container, Stack, Typography } from "@mui/material"
+import { Box, Stack, Typography } from "@mui/material"
 import Category from "../../components/Category/Category"
 import { useEffect, useState } from "react"
 import { Videos } from "../videos-page/Videos"

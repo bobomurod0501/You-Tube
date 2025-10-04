@@ -1,7 +1,6 @@
 import * as React from "react";
 import {
   styled,
-  useTheme,
   type Theme,
   type CSSObject,
 } from "@mui/material/styles";
@@ -20,10 +19,6 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import Box from "@mui/material/Box";
 import MailIcon from "@mui/icons-material/Mail";
 import Navbar from "../components/Navbar/Navbar";
-import { IconButton, Toolbar, Typography } from "@mui/material";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import MenuIcon from "@mui/icons-material/Menu";
 import { useLocation } from "react-router";
 import SideBarDrawer from "../components/drawer/Drawer";
 
