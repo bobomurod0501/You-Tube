@@ -1,32 +1,57 @@
-import { Box, IconButton, Stack, Typography } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  IconButton,
+  Menu,
+  MenuItem,
+  Stack,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import SearchBar from "../searchBar/SearchBar";
 import { Link, useLocation } from "react-router";
 import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { useThemeContext } from "../../contexts/ThemeContext";
 import MenuIcon from "@mui/icons-material/Menu";
-import type { Dispatch, SetStateAction } from "react";
-
+import { useState, type Dispatch, type SetStateAction } from "react";
+import { useAuthContext } from "../../contexts/authContext";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase/config";
 
 interface Props {
-  setOpen: Dispatch<SetStateAction<boolean>>,
-  open:boolean,
-  drawerOpen:boolean,
-  setDrawerOpen: Dispatch<SetStateAction<boolean>>
+  setOpen: Dispatch<SetStateAction<boolean>>;
+  open: boolean;
+  drawerOpen: boolean;
+  setDrawerOpen: Dispatch<SetStateAction<boolean>>;
 }
-const Navbar = ({
-  setOpen,
-  open,
-  drawerOpen,
-  setDrawerOpen,
-}:Props) => {
+const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const Navbar = ({ setOpen, open, drawerOpen, setDrawerOpen }: Props) => {
   const { mode, setMode } = useThemeContext();
   const { pathname } = useLocation();
+  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+  const {setIsAuth} = useAuthContext()
+  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseUserMenu = (item:string) => {
+    setAnchorElUser(null);
+    if(item.toLowerCase() == "logout"){
+      signOut(auth).then(() => {
+        setIsAuth(false)
+        // Sign-out successful.
+      }).catch(() => {
+        // An error happened.
+      });
+    }
+  };
+
   const isVideoPage = pathname.startsWith("/video/");
 
   const handleDrawer = () => {
     if (isVideoPage) {
-      setDrawerOpen(!drawerOpen)
+      setDrawerOpen(!drawerOpen);
     } else {
       setOpen(!open);
     }
@@ -85,11 +110,41 @@ const Navbar = ({
       </Stack>
 
       <SearchBar />
-      <Box>
+      <Stack direction={"row"} alignItems={"center"}>
+
         <IconButton onClick={() => setMode(mode == "dark" ? "light" : "dark")}>
           {mode == "light" ? <WbSunnyIcon /> : <DarkModeIcon />}
         </IconButton>
-      </Box>
+        <Box sx={{ flexGrow: 0 }}>
+          <Tooltip title="Open settings">
+            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" sx={{width:"30px", height:"30px"}}/>
+            </IconButton>
+          </Tooltip>
+          <Menu
+            sx={{ mt: "45px" }}
+            id="menu-appbar"
+            anchorEl={anchorElUser}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            open={Boolean(anchorElUser)}
+            onClose={handleCloseUserMenu}
+          >
+            {settings.map((setting) => (
+              <MenuItem key={setting} onClick={() => handleCloseUserMenu(setting)}>
+                <Typography sx={{ textAlign: "center" }}>{setting}</Typography>
+              </MenuItem>
+            ))}
+          </Menu>
+        </Box>
+      </Stack>
     </Stack>
   );
 };

@@ -19,8 +19,10 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import Box from "@mui/material/Box";
 import MailIcon from "@mui/icons-material/Mail";
 import Navbar from "../components/Navbar/Navbar";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import SideBarDrawer from "../components/drawer/Drawer";
+import { IconButton } from "@mui/material";
+import { sideBarItems } from "./components/SideBarItems";
 
 const drawerWidth = 240;
 
@@ -110,7 +112,13 @@ const MainLayout = ({ children }: { children?: React.ReactNode }) => {
   const [open, setOpen] = React.useState(false);
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const { pathname } = useLocation();
+  const navigate = useNavigate()
   const isVideoPage = pathname.startsWith("/video/");
+  const handleClickSideBar = (name:string) => {
+    if(name.toLowerCase() === "home"){
+      navigate("/")
+    }
+  }
 
   return (
     // <Box>
@@ -137,10 +145,15 @@ const MainLayout = ({ children }: { children?: React.ReactNode }) => {
       </AppBar>
       {!isVideoPage && (
         <Drawer variant="permanent" open={open}>
+              <DrawerHeader>
+                 <IconButton>
+                 </IconButton>
+              </DrawerHeader>
           <List>
-            {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-              <ListItem key={text} disablePadding sx={{ display: "block" }}>
+            {sideBarItems?.map((item, index) => (
+              <ListItem key={index} disablePadding sx={{ display: "block" }}>
                 <ListItemButton
+                onClick={() => handleClickSideBar(item.name)}
                   sx={[
                     {
                       minHeight: 48,
@@ -170,10 +183,10 @@ const MainLayout = ({ children }: { children?: React.ReactNode }) => {
                           },
                     ]}
                   >
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                    {item.icon}
                   </ListItemIcon>
                   <ListItemText
-                    primary={text}
+                    primary={item.name}
                     sx={[
                       open
                         ? {

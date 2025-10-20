@@ -18,7 +18,7 @@ const Category = ({ setSelectedCategory, selectedCategory }: Props) => {
       {
         categories?.map((item) => {
           return (
-            <button className={`${mode} ${selectedCategory == item.name ? "selected" : ""}`} onClick={() => handeSelectFunc(item.name)} key={item.id}><span>{item.icon}</span>{item.name}</button>
+            <button className={`categoryBtn ${mode} ${selectedCategory == item.name ? "selected" : ""}`} onClick={() => handeSelectFunc(item.name)} key={item.id}><span>{item.icon}</span>{item.name}</button>
           )
         })
       }

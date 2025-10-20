@@ -1,4 +1,4 @@
-button{
+.categoryBtn{
    padding: 5px 15px;
    border: none;
    display: flex;
@@ -14,7 +14,7 @@ button{
    transition: all 0.5s;
 }
 
-button:hover{
+.categoryBtn:hover{
    background-color: #902923 !important;
    color: aliceblue !important;
    cursor: pointer ;

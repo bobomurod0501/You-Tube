@@ -7,7 +7,9 @@ import { createTheme, ThemeProvider, CssBaseline } from "@mui/material"
 import { useMemo } from "react"
 import { useThemeContext } from "./contexts/ThemeContext"
 import { Root } from "./pages/Root"
-
+import { LoginPage } from "./pages/auth/LoginPage"
+import { SignUpPage } from "./pages/auth/SignUpPage"
+import { Toaster } from 'sonner'
 const router = createBrowserRouter([
   {
     path:"/",
@@ -48,6 +50,20 @@ const router = createBrowserRouter([
         ]
       }
     ]
+  },
+  {
+    path:"/auth",
+    element:<Outlet/>,
+    children:[
+      {
+        path:"login",
+        element:<LoginPage/>
+      },
+      {
+        path:"signup",
+        element:<SignUpPage/>
+      }
+    ]
   }
 ])
 const App = () => {
@@ -56,12 +72,13 @@ const App = () => {
     palette:{
       mode,
       primary: {
-        main: '#ff5252',
+        main: '#000',
       },
     }
   }), [mode])
   return (
     <ThemeProvider theme={theme}>
+      <Toaster position="top-center" />
       <CssBaseline/>
       <RouterProvider router={router} />
     </ThemeProvider>
