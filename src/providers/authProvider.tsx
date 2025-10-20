@@ -4,7 +4,7 @@ import {onAuthStateChanged } from "firebase/auth";
 import { auth } from '../firebase/config';
 
 export const AuthProvider = ({children}:{children:JSX.Element}) => {
-   const [isAuth, setIsAuth] = useState(true)
+   const [isAuth, setIsAuth] = useState(false)
    onAuthStateChanged(auth, (user) => {
       if (user) {
             setIsAuth(true)
