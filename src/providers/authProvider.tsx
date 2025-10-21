@@ -1,17 +1,22 @@
-import { useMemo, useState, type JSX } from 'react'
+import { useEffect, useMemo, useState, type JSX } from 'react'
 import { authContext } from '../contexts/authContext'
 import {onAuthStateChanged } from "firebase/auth";
 import { auth } from '../firebase/config';
 
 export const AuthProvider = ({children}:{children:JSX.Element}) => {
-   const [isAuth, setIsAuth] = useState(false)
-   onAuthStateChanged(auth, (user) => {
-      if (user) {
+   const token = localStorage.getItem("access_token")
+   console.log(token, "token")
+   const [isAuth, setIsAuth] = useState(token ? true : false)
+   useEffect(() => {
+      onAuthStateChanged(auth, (user) => {
+         if (user) {
             setIsAuth(true)
-      } else {
-         //
-      }
-   });
+         } else {
+            //
+         }
+      });
+   }, [])
+
 
    const value = useMemo(() => ({ isAuth, setIsAuth }), [isAuth]);
   return (

@@ -40,6 +40,7 @@ const Navbar = ({ setOpen, open, drawerOpen, setDrawerOpen }: Props) => {
     if(item.toLowerCase() == "logout"){
       signOut(auth).then(() => {
         setIsAuth(false)
+        localStorage.removeItem("access_token")
         // Sign-out successful.
       }).catch(() => {
         // An error happened.

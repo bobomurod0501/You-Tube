@@ -50,9 +50,10 @@ export const SignUpPage = () => {
       setShowError(true);
     }else {
        createUserWithEmailAndPassword(auth, email, password)
-          .then((userCredential) => {
+          .then(async(userCredential) => {
              const user = userCredential.user;
-             console.log(user)
+             const token = await user.getIdToken()
+             localStorage.setItem("access_token", token)
             setIsAuth(true)
             navigate("/")
             toast.success("successfully registered")

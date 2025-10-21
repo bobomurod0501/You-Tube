@@ -22,6 +22,7 @@ import { useAuthContext } from "../../contexts/authContext";
 import { toast } from "sonner";
 
 
+
 export const LoginPage = () => {
    const [showPassword, setShowPassword] = useState(false);
    const [email, setEmail] = useState("")
@@ -49,15 +50,15 @@ export const LoginPage = () => {
          setShowError(true)
       }
       signInWithEmailAndPassword(auth, email, password)
-         .then((userCredential) => {
+         .then(async(userCredential) => {
             const user = userCredential.user;
-            console.log(user)
+            const token = await user.getIdToken()
+            localStorage.setItem("access_token", token)
             setIsAuth(true)
             navigate("/")
             toast.success("Welcome back")
          })
          .catch((error) => {
-            // const errorCode = error.code;
             const errorMessage = error.message;
             console.log(errorMessage)
             toast.error("Email or password is incerrect")
